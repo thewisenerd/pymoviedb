@@ -44,6 +44,13 @@
 			$(document).ready(function() {
 			$.material.init();
 			});
+			var shown_error = 0;
+			function show_err() {
+				if (window.shown_error == 0) {
+					alert("my awesome <imdb poster fetching server> is down; \nposter's won't load till it's back online!");
+					window.shown_error = 1;
+				}
+			}
 		</script>
 
 		<style>

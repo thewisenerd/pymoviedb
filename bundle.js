@@ -135,14 +135,14 @@ function dialoggen(imdbid, containerid) {
 			if (response.Poster == "N/A") {
 				$('#dialog-img-'+containerid).html("<img src=\"assets/images/poster-not-available.jpg\" width=\"100%\" min-height=\"66px\"></img>");
 			} else {
-				$('#dialog-img-'+containerid).html("<img src=\"http://php-thewisenerd.rhcloud.com/spoof_html.php?url=" + Base64.encode(response.Poster) + "&referer=" + Base64.encode(imdb_reflink) + "&content=image&type=jpeg\" width=\"100%\" min-height=\"66px\" onerror=\"javascript:alert('movie poster can't be loaded! my personal server scrapping imdb's website is down :(');\"></img>");
+				$('#dialog-img-'+containerid).html("<img src=\"http://php-thewisenerd.rhcloud.com/spoof_html.php?url=" + Base64.encode(response.Poster) + "&referer=" + Base64.encode(imdb_reflink) + "&content=image&type=jpeg\" width=\"100%\" min-height=\"66px\" onerror=\"this.onerror=null;this.src='assets/images/poster-not-available.jpg';show_err();\" \"></img>");
 			}
 
 			$('#dialog-img-'+containerid).show();
 		}
 
 		//lemme stop spamming console for now :P
-		console.log(response);
+		//console.log(response);
 
 	});
 
