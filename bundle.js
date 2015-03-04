@@ -133,7 +133,7 @@ function dialoggen(imdbid, containerid) {
 			if (response.Poster == "N/A") {
 				$('#dialog-img-'+containerid).html("<img src=\"assets/images/poster-not-available.jpg\" width=\"100%\" min-height=\"66px\"></img>");
 			} else {
-				$('#dialog-img-'+containerid).html("<img src=\"http://php-thewisenerd.rhcloud.com/image.php?url=" + Base64.encode(response.Poster) + "\" width=\"100%\" min-height=\"66px\"></img>");
+				$('#dialog-img-'+containerid).html("<img src=\"http://php-thewisenerd.rhcloud.com/image.php?url=" + Base64.encode(response.Poster) + "\" width=\"100%\" min-height=\"66px\" onerror=\"javascript:alert(\"movie poster can't be loaded! my personal server scrapping imdb's website is down :(\");\"></img>");
 			}
 
 			$('#dialog-img-'+containerid).show();
