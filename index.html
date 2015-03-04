@@ -8,7 +8,12 @@
 		<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.2.1/css/material.min.css" />
 		<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.2.1/css/ripples.min.css" />
 
+		<link href="assets/css/materialdesignicons.min.css" media="all" rel="stylesheet" type="text/css" />
+		<link href="assets/css/loader.css" media="all" rel="stylesheet" type="text/css" />
+
 		<link rel="shortcut icon" href="/assets/images/favicon.png">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 
 		<style>
 			body {
@@ -28,35 +33,6 @@
 
 	<body>
 		<div id="movielist">
-
-<!--
-twn: material design rework; later.
-			<button class="btn btn-flat btn-default" data-toggle="modal" data-target="#complete-dialog">Open dialog<div class="ripple-wrapper"></div></button>
-			<div id="complete-dialog" class="modal fade" tabindex="-1" style="display: none;" aria-hidden="true">
-				<div class="modal-dialog">
-					<div class="modal-content">
-						<div class="modal-header">
-							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-							<h4 class="modal-title">Dialog</h4>
-						</div>
-						<div class="modal-body">
-							<p>Fore aut non quem incididunt, varias reprehenderit deserunt quem offendit,
-							cillum proident ne reprehenderit, quem ad laborum, quo possumus praetermissum,
-							si ne illustriora, hic appellat coniunctione, do labore aliqua quo probant. In
-							probant voluptatibus quo mentitum est laboris. Quorum mandaremus graviterque.
-							Mentitum id velit, dolor aut litteris, ea varias illustriora, ita commodo ita
-							ingeniis, iis nulla appellat incurreret, aut irure amet summis pariatur ita ubi
-							quis dolore veniam proident, consequat sed ingeniis.</p>
-						</div>
-						<div class="modal-footer">
-							<button class="btn btn-primary" data-dismiss="modal">Dismiss<div class="ripple-wrapper"><div class="ripple ripple-on ripple-out" style="left: 54.0625px; top: 19px; -webkit-transform: scale(10.75); transform: scale(10.75); background-color: rgba(255, 255, 255, 0.843137);"></div></div></button>
-						</div>
-					</div>
-				</div>
-			</div>
-
--->
-
 		</div>
 
 
@@ -75,6 +51,7 @@ twn: material design rework; later.
 				width: 100%;
 				text-align: left;
 				align: left;
+				text-transform: none;
 			}
 
 			#dialog h2 {
@@ -82,6 +59,11 @@ twn: material design rework; later.
 				margin: 0;
 				font-size: 16px;
 				font-weight: 400;
+			}
+
+			.vertical-align {
+				display: flex;
+				align-items: center;
 			}
 		</style>
 	</body>
