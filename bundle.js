@@ -131,10 +131,11 @@ function dialoggen(imdbid, containerid) {
 			$('#dialog-'+containerid).html(response.Plot);
 			$('#dialog-'+containerid).show();
 			if (response.Poster == "N/A") {
-				$('#dialog-img-'+containerid).html("<img src=\"/assets/images/poster-not-available.jpg\" width=\"100%\" min-height=\"66px\"></img>");
+				$('#dialog-img-'+containerid).html("<img src=\"assets/images/poster-not-available.jpg\" width=\"100%\" min-height=\"66px\"></img>");
 			} else {
-				$('#dialog-img-'+containerid).html("<img src=\"" + response.Poster + "\" width=\"100%\" min-height=\"66px\"></img>");
+				$('#dialog-img-'+containerid).html("<img src=\"http://php-thewisenerd.rhcloud.com/image.php?url=" + Base64.encode(response.Poster) + "\" width=\"100%\" min-height=\"66px\"></img>");
 			}
+
 			$('#dialog-img-'+containerid).show();
 		}
 
