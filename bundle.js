@@ -90,7 +90,8 @@ function write_elem(content, count){
 	writeback += '				</div>' + "\n";
 	writeback += '			</div>' + "\n";
 	writeback += '			<div class="modal-footer">' + "\n";
-	writeback += '				<button class="btn btn-primary" data-dismiss="modal">Close<div class="ripple-wrapper"><div class="ripple ripple-on ripple-out" style="left: 54.0625px; top: 19px; -webkit-transform: scale(10.75); transform: scale(10.75); background-color: rgba(255, 255, 255, 0.843137);"></div></div></button>' + "\n";
+	writeback += '				<a href="http://php-thewisenerd.rhcloud.com/mailgun-php/?title=' + Base64.encode (content[0]) +  '" class="btn btn-danger btn-fab btn-raised mdi-alert-error" title="report movie"></a>' + "\n";
+	writeback += '				<button class="btn btn-success" data-dismiss="modal">Close</button>' + "\n";
 	writeback += '			</div>' + "\n";
 	writeback += '		</div>' + "\n";
 	writeback += '	</div>' + "\n";
