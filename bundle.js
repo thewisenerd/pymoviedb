@@ -87,7 +87,7 @@ function write_elem(content, count){
 	writeback += '				</div>' + "\n";
 	writeback += '			</div>' + "\n";
 	writeback += '			<div class="modal-footer">' + "\n";
-	writeback += '				<a target="_blank" href="http://myphp-thewisenerd.rhcloud.com/mailgun-php/?title=' + Base64.encode (content[0]) +  '" class="btn btn-danger btn-fab btn-raised mdi-alert-error" title="report movie"></a>' + "\n";
+	writeback += '				<a target="_blank" href="http://php.thewisenerd.changeip.org/mailgun-php/?title=' + Base64.encode (content[0]) +  '" class="btn btn-danger btn-fab btn-raised mdi-alert-error" title="report movie"></a>' + "\n";
 	writeback += '				<button class="btn btn-success" data-dismiss="modal">Close</button>' + "\n";
 	writeback += '			</div>' + "\n";
 	writeback += '		</div>' + "\n";
@@ -133,7 +133,7 @@ function dialoggen(imdbid, containerid) {
 			if (response.Poster == "N/A") {
 				$('#dialog-img-'+containerid).html("<img src=\"assets/images/poster-not-available.jpg\" width=\"100%\" min-height=\"66px\"></img>");
 			} else {
-				$('#dialog-img-'+containerid).html("<img src=\"http://myphp-thewisenerd.rhcloud.com/spoof_referer/?url=" + Base64.encode(response.Poster) + "&referer=" + Base64.encode(imdb_reflink) + "&content=image&type=jpeg\" width=\"100%\" min-height=\"66px\" onerror=\"this.onerror=null;this.src='assets/images/poster-not-available.jpg';show_err();\" \"></img>");
+				$('#dialog-img-'+containerid).html("<img src=\"http://php.thewisenerd.changeip.org/spoof_referer/?url=" + Base64.encode(response.Poster) + "&referer=" + Base64.encode(imdb_reflink) + "&content=image&type=jpeg\" width=\"100%\" min-height=\"66px\" onerror=\"this.onerror=null;this.src='assets/images/poster-not-available.jpg';show_err();\" \"></img>");
 			}
 
 			$('#dialog-img-'+containerid).show();
