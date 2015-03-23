@@ -87,7 +87,7 @@ function write_elem(content, count){
 	writeback += '				</div>' + "\n";
 	writeback += '			</div>' + "\n";
 	writeback += '			<div class="modal-footer">' + "\n";
-	writeback += '				<a target="_blank" href="http://php.thewisenerd.changeip.org/mailgun-php/?title=' + Base64.encode (content[0]) +  '" class="btn btn-danger btn-fab btn-raised mdi-alert-error" title="report movie"></a>' + "\n";
+	writeback += '				<!--<a target="_blank" href="http://php.thewisenerd.changeip.org/mailgun-php/?title=' + Base64.encode (content[0]) +  '" class="btn btn-danger btn-fab btn-raised mdi-alert-error" title="report movie"></a>-->' + "\n";
 	writeback += '				<button class="btn btn-success" data-dismiss="modal">Close</button>' + "\n";
 	writeback += '			</div>' + "\n";
 	writeback += '		</div>' + "\n";
