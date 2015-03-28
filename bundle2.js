@@ -21,6 +21,7 @@ function write_elem(content, count){
 	var writeback = '';
 
 	writeback += '<tr>' + "\n";
+	writeback += '	<td><span class="badge">' + count + '</span></td>' + "\n";
 	writeback += '	<td>'/* + content[0] + '</td>'*/ + "\n";
 	writeback += "		<a href=\"#\" onclick=\"javascript:dialoggen('" + content[1] + "', '" + count + "')\" " + ' data-toggle="modal" data-target="#complete-dialog' + count + '">' + content[0] + '</a>' + "\n";
 	writeback += '	</td>' + "\n";
