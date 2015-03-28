@@ -2,7 +2,8 @@
 	<head>
 		<title>movie list</title>
 		<script type="text/javascript" src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
-		<script type="text/javascript" src="bundle.js"></script>
+		<script type="text/javascript" src="bundle2.js"></script>
+		<script type="text/javascript" src="stupidtable.min.js"></script>
 
 		<link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
 		<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.2.1/css/material.min.css" />
@@ -32,9 +33,27 @@
 	</head>
 
 	<body>
-		<div id="movielist">
-		</div>
+<!--		<div id="movielist">
+		</div> -->
 
+		<table id="myTable" class="table table-striped table-hover tablesorter">
+		<thead>
+		<tr>
+			<th data-sort="string"  width="60%">Title</th>
+			<th data-sort="date"    width="10%">Date Released</th>
+			<th data-sort="quality" width="5%">Quality</th>
+			<th data-sort="float"   width="5%">Rating</th>
+			<th data-sort="string"  width="10%">Language</th>
+			<th data-sort="date"    width="10%">Date Added</th>
+		</tr>
+		</thead>
+		<tbody id="movielist">
+		</tbody>
+		</table>
+
+
+		<div id="modalbox">
+		</div>
 
 		<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
@@ -42,7 +61,7 @@
 		<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.2.1/js/material.min.js"></script>
 		<script>
 			$(document).ready(function() {
-			$.material.init();
+				$.material.init();
 			});
 			var shown_error = 0;
 			function show_err() {
@@ -72,6 +91,44 @@
 				display: flex;
 				align-items: center;
 			}
+
+			table.tablesorter .header {
+				cursor: pointer; cursor: hand;
+			}
+
+			table.tablesorter .header::before {
+				content: "\21cb  ";
+			}
+
+			table.tablesorter .headerSortUp {
+				cursor: pointer; cursor: hand;
+			}
+
+			table.tablesorter .headerSortUp::before {
+				content: "\21a5  ";
+			}
+
+			table.tablesorter .headerSortDown {
+				cursor: pointer; cursor: hand;
+			}
+
+			table.tablesorter .headerSortDown::before {
+				content: "\21a7  ";
+			}
+
+			table.tablesorter {
+				width:100%;
+				table-layout:fixed;
+			}
+
+			table.tablesorter td {
+				word-wrap:break-word;
+			}
+
+			#movielist a, a:hover, a:focus {
+				color: black;
+			}
+
 		</style>
 	</body>
 </html>
