@@ -20,16 +20,24 @@ function write_elem(content, count){
 
 	var writeback = '';
 
-	writeback += '<tr>' + "\n";
-	writeback += '	<td><span class="badge">' + count + '</span></td>' + "\n";
-	writeback += '	<td>'/* + content[0] + '</td>'*/ + "\n";
+
+
+
+
+
+
+
+
+	writeback += '<tr class="container-fluid">' + "\n";
+	writeback += '	<td class="col-md-1 col-sm-1  col-xs-1"><span class="badge">' + count + '</span></td>' + "\n";
+	writeback += '	<td class="col-md-6 col-xs-11 col-sm-11">'/* + content[0] + '</td>'*/ + "\n";
 	writeback += "		<a href=\"#\" onclick=\"javascript:dialoggen('" + content[1] + "', '" + count + "')\" " + ' data-toggle="modal" data-target="#complete-dialog' + count + '">' + content[0] + '</a>' + "\n";
 	writeback += '	</td>' + "\n";
-	writeback += '	<td>' + content[2] + '</td>' + "\n";
-	writeback += '	<td>' + content[3] + '</td>' + "\n";
-	writeback += '	<td>' + content[4] + '</td>' + "\n";
-	writeback += '	<td>' + content[5].split(',')[0] + '</td>' + "\n";
-	writeback += '	<td>' + content[6] + '</td>' + "\n";
+	writeback += '	<td class="col-md-1 col-xs-6  col-sm-6">' + content[2] + '</td>' + "\n";
+	writeback += '	<td class="col-md-1 col-xs-3  col-sm-3">' + content[3] + '</td>' + "\n";
+	writeback += '	<td class="col-md-1 col-xs-3  col-sm-3">' + content[4] + '</td>' + "\n";
+	writeback += '	<td class="col-md-1 col-xs-6  col-sm-6">' + content[5].split(',')[0] + '</td>' + "\n";
+	writeback += '	<td class="col-md-1 col-xs-6  col-sm-6">' + content[6] + '</td>' + "\n";
 	writeback += '</tr>' + "\n";
 
 	container.append(writeback);
