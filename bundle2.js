@@ -1,6 +1,7 @@
 var callback, container, params, repo, url, username, client_id, client_secret, access_token;
 username = "thewisenerd";
-repo = "pymoviedb";
+repo     = "pymoviedb";
+dbfile   = "movies.list";
 
 var Base64={_keyStr:"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=",encode:function(e){var t="";var n,r,i,s,o,u,a;var f=0;e=Base64._utf8_encode(e);while(f<e.length){n=e.charCodeAt(f++);r=e.charCodeAt(f++);i=e.charCodeAt(f++);s=n>>2;o=(n&3)<<4|r>>4;u=(r&15)<<2|i>>6;a=i&63;if(isNaN(r)){u=a=64}else if(isNaN(i)){a=64}t=t+this._keyStr.charAt(s)+this._keyStr.charAt(o)+this._keyStr.charAt(u)+this._keyStr.charAt(a)}return t},decode:function(e){var t="";var n,r,i;var s,o,u,a;var f=0;e=e.replace(/[^A-Za-z0-9\+\/\=]/g,"");while(f<e.length){s=this._keyStr.indexOf(e.charAt(f++));o=this._keyStr.indexOf(e.charAt(f++));u=this._keyStr.indexOf(e.charAt(f++));a=this._keyStr.indexOf(e.charAt(f++));n=s<<2|o>>4;r=(o&15)<<4|u>>2;i=(u&3)<<6|a;t=t+String.fromCharCode(n);if(u!=64){t=t+String.fromCharCode(r)}if(a!=64){t=t+String.fromCharCode(i)}}t=Base64._utf8_decode(t);return t},_utf8_encode:function(e){e=e.replace(/\r\n/g,"\n");var t="";for(var n=0;n<e.length;n++){var r=e.charCodeAt(n);if(r<128){t+=String.fromCharCode(r)}else if(r>127&&r<2048){t+=String.fromCharCode(r>>6|192);t+=String.fromCharCode(r&63|128)}else{t+=String.fromCharCode(r>>12|224);t+=String.fromCharCode(r>>6&63|128);t+=String.fromCharCode(r&63|128)}}return t},_utf8_decode:function(e){var t="";var n=0;var r=c1=c2=0;while(n<e.length){r=e.charCodeAt(n);if(r<128){t+=String.fromCharCode(r);n++}else if(r>191&&r<224){c2=e.charCodeAt(n+1);t+=String.fromCharCode((r&31)<<6|c2&63);n+=2}else{c2=e.charCodeAt(n+1);c3=e.charCodeAt(n+2);t+=String.fromCharCode((r&15)<<12|(c2&63)<<6|c3&63);n+=3}}return t}}
 
@@ -18,17 +19,9 @@ function write_elem(content, count){
 
 	var writeback = '';
 
-
-
-
-
-
-
-
-
 	writeback += '<tr class="container-fluid">' + "\n";
 	writeback += '	<td class="col-md-1 col-sm-1  col-xs-1"><span class="badge">' + count + '</span></td>' + "\n";
-	writeback += '	<td class="col-md-7 col-xs-11 col-sm-11">'/* + content[0] + '</td>'*/ + "\n";
+	writeback += '	<td class="col-md-7 col-xs-11 col-sm-11">' + "\n";
 	writeback += "		<a href=\"#\" onclick=\"javascript:dialoggen('" + content[1] + "', '" + count + "')\" " + ' data-toggle="modal" data-target="#complete-dialog' + count + '">' + content[0] + '</a>' + "\n";
 	writeback += '	</td>' + "\n";
 	writeback += '	<td class="col-md-1 col-xs-6  col-sm-6">' + content[2] + '</td>' + "\n";
@@ -58,67 +51,15 @@ function write_elem(content, count){
 	writeback += '				</div>' + "\n";
 	writeback += '			</div>' + "\n";
 	writeback += '			<div class="modal-body">' + "\n";
-/*
-	writeback += '				<div class="list-group">' + "\n";
-	writeback += '					<div class="list-group-item">' + "\n";
-	writeback += '						<div class="row-action-primary">' + "\n";
-	writeback += '							<i class="mdi mdi-calendar"></i>' + "\n";
-	writeback += '						</div>' + "\n";
-	writeback += '						<div class="row-content">' + "\n";
-	writeback += '							<div class="action-secondary"><i class="mdi-material-info"></i></div>' + "\n";
-	writeback += '							<h6 class="list-group-item-heading">Year</h6>' + "\n";
-	writeback += '							<p class="list-group-item-text">' + content[2] + '</p>' + "\n";
+	writeback += '				<p class="list-group-item-text get-summary-btn">' + "\n";
+	writeback += '					<div id="dialog-' + count + '">' + "\n";
+	writeback += '						<div class="spinner">' + "\n";
+	writeback += '							<div class="bounce1"></div><div class="bounce2"></div><div class="bounce3"></div>' + "\n";
 	writeback += '						</div>' + "\n";
 	writeback += '					</div>' + "\n";
-	writeback += '					<div class="list-group-separator"></div>' + "\n";
-	writeback += '					<div class="list-group-item">' + "\n";
-	writeback += '						<div class="row-action-primary">' + "\n";
-	writeback += '							<i class="mdi-av-video-collection"></i>' + "\n";
-	writeback += '						</div>' + "\n";
-	writeback += '						<div class="row-content">' + "\n";
-	writeback += '							<div class="action-secondary"><i class="mdi-material-info"></i></div>' + "\n";
-	writeback += '							<h6 class="list-group-item-heading">Quality</h6>' + "\n";
-	writeback += '							<p class="list-group-item-text">' + content[3] + '</p>' + "\n";
-	writeback += '						</div>' + "\n";
-	writeback += '					</div>' + "\n";
-	writeback += '					<div class="list-group-separator"></div>' + "\n";
-	writeback += '					<div class="list-group-item">' + "\n";
-	writeback += '						<div class="row-action-primary">' + "\n";
-	writeback += '							<i class="mdi mdi-movie"></i>' + "\n";
-	writeback += '						</div>' + "\n";
-	writeback += '						<div class="row-content">' + "\n";
-	writeback += '							<div class="action-secondary"><i class="mdi-material-info"></i></div>' + "\n";
-	writeback += '							<h6 class="list-group-item-heading">IMDB</h6>' + "\n";
-	writeback += '							<p class="list-group-item-text"><a href="http://www.imdb.com/title/' + content[1] + '/" target="_blank">Link<i class="mdi-action-open-in-new"></i></a></p>' + "\n";
-	writeback += '						</div>' + "\n";
-	writeback += '					</div>' + "\n";
-	writeback += '					<div class="list-group-separator"></div>' + "\n";
-	writeback += '					<div class="list-group-item">' + "\n";
-	writeback += '						<div class="row-action-primary">' + "\n";
-	writeback += '							<i class="mdi mdi-tooltip-text"></i>' + "\n";
-	writeback += '						</div>' + "\n";
-	writeback += '						<div class="row-content">' + "\n";
-	writeback += '							<div class="action-secondary"><i class="mdi-material-info"></i></div>' + "\n";
-	writeback += '							<h6 class="list-group-item-heading">Summary</h6>' + "\n";
-*/
-	writeback += '							<p class="list-group-item-text get-summary-btn">' + "\n";
-	writeback += '								<div id="dialog-' + count + '">' + "\n";
-	writeback += '									<div class="spinner">' + "\n";
-	writeback += '										<div class="bounce1"></div><div class="bounce2"></div><div class="bounce3"></div>' + "\n";
-	writeback += '									</div>' + "\n";
-	writeback += '								</div>' + "\n";
-	writeback += '							</p>' + "\n";
-/*
-	writeback += '						</div>' + "\n";
-	writeback += '					</div>' + "\n";
-	writeback += '					<div class="list-group-separator"></div>' + "\n";
-	writeback += '				</div>' + "\n";
-*/
+	writeback += '				</p>' + "\n";
 	writeback += '			</div>' + "\n";
 	writeback += '			<div class="modal-footer">' + "\n";
-/*
-	writeback += '				<a target="_blank" href="http://php.thewisenerd.me/send_report.php?title=' + Base64.encode (content[0]) +  '" class="btn btn-danger btn-fab btn-raised mdi-alert-error" title="report movie"></a>' + "\n";
-*/
 	writeback += '				<button class="btn btn-success" data-dismiss="modal">Close</button>' + "\n";
 	writeback += '			</div>' + "\n";
 	writeback += '		</div>' + "\n";
@@ -126,9 +67,7 @@ function write_elem(content, count){
 	writeback += '</div>' + "\n";
 
 	container.append(writeback);
-
-
-}
+} // write_elem
 
 function write_list(content) {
 	container = $("#movielist"); //helper
@@ -136,13 +75,12 @@ function write_list(content) {
 	for (var i = 0; i < arr.length; i++) {
 		var mov = arr[i].split("|");
 		if (mov.length < 4) {
-			console.log("something wrong with: "+arr[i]);
 			continue;
 		} else {
 			write_elem(mov, i + 1);
 		}
 	}
-}
+} // write_list
 
 function dialoggen(imdbid, containerid) {
 
@@ -171,13 +109,9 @@ function dialoggen(imdbid, containerid) {
 			$('#dialog-img-'+containerid).show();
 		}
 
-		//lemme stop spamming console for now :P
-		//console.log(response);
-
 	});
 
-
-}
+} // dialoggen
 
 
 // Helper function to convert a string of the form "Mar 15, 1987" into
@@ -187,7 +121,6 @@ var date_from_string = function(str){
 }
 
 var qual_from_string = function(str) {
-	//console.log(str.substr(0, str.indexOf('p')));
 	return str.substr(0, str.indexOf('p'));
 }
 
@@ -196,30 +129,19 @@ $(function() {
 	callback = function(response) {
 		var content_data = Base64.decode(response.data.content);
 		write_list(content_data);
-		//console.log(content_data);
 
 		var table = $("table").stupidtable({
 			"date":function(a,b){
-			// Get these into date objects for comparison.
 
 				aDate = date_from_string(a);
 				bDate = date_from_string(b);
 
 				return aDate - bDate;
 			},
-			"year":function(a, b) {
-
-				aYear = year_from_string(a);
-				bYear = year_from_string(b);
-
-				return aYear - bYear;
-			},
 			"quality":function(a, b) {
 
 				aQual = qual_from_string(a);
 				bQual = qual_from_string(b);
-
-				console.log(aQual - bQual);
 
 				return aQual - bQual;
 			},
@@ -233,9 +155,8 @@ $(function() {
 			th.eq(data.column).append('<span class="arrow">' + arrow +'</span>');
 		});
 
-
 	};
-	url = "https://api.github.com/repos/" + username + "/" + repo + "/contents/movies.list";
+	url = "https://api.github.com/repos/" + username + "/" + repo + "/contents/" + dbfile;
 	return $.ajax(url, {
 		dataType: "jsonp",
 		type: "get"
