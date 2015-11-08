@@ -1,0 +1,5 @@
+*.pyc
+omdb
+pip*
+dir.list
+err.list
