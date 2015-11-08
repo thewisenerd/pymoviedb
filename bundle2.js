@@ -13,12 +13,20 @@ function write_elem(content, count){
 	* content[4] : rating
 	* content[5] : language
 	* content[6] : date added
-	* content[7] : enc notes
+	* //TODO: mov[4] : enc. notes(?)
 	*/
 
 	container = $("#movielist"); //helper
 
 	var writeback = '';
+
+
+
+
+
+
+
+
 
 	writeback += '<tr class="container-fluid">' + "\n";
 	writeback += '	<td class="col-md-1 col-sm-1  col-xs-1"><span class="badge">' + count + '</span></td>' + "\n";
@@ -103,14 +111,6 @@ function write_elem(content, count){
 	writeback += '									</div>' + "\n";
 	writeback += '								</div>' + "\n";
 	writeback += '							</p>' + "\n";
-
-	if (content.length == 8) {
-	writeback += '							<p>' + "\n";
-	writeback += '<b>Notes:</b> ' + "\n";
-	writeback += content[7].replace("\\n", "<br />"); + "\n";
-	writeback += '							</p>' + "\n";
-	}
-
 /*
 	writeback += '						</div>' + "\n";
 	writeback += '					</div>' + "\n";
