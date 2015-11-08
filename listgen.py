@@ -35,6 +35,18 @@ movie_dirs = []
 movie_list = []
 err_lines  = set()
 dat = {}
+movies = {}
+
+f_lines = []
+
+if os.path.exists(pyme_cfg.list_file):
+  with open(pyme_cfg.list_file, "r") as f:
+    f_lines = f.readlines()
+
+for l in f_lines:
+  l = (l).strip("\r\n")
+  l_s = l.split('|')
+  movies[l_s[1]] = l
 
 for folder in open(pyme_cfg.dirs_file):
   movie_dirs.append(folder.strip("\r\n"))
@@ -115,11 +127,17 @@ for movie in movie_list:
     dat['Released']   = jsondb['Released']
     dat['imdbRating'] = jsondb['imdbRating']
     dat['Language']   = jsondb['Language']
-    t_str = dat['Title'] + "|" + dat['imdbID']  + "|" + dat['Year'] + "|" + dat['res'] + "|" + dat['imdbRating'] + "|" + dat['Language']
+    t_str = dat['Title'] + "|" + dat['imdbID']  + "|" + dat['Released'] + "|" + dat['res'] + "|" + dat['imdbRating'] + "|" + dat['Language']
     if not pyme_cfg.quiet:
       print ('\t' + t_str)
+    movies[dat['imdbID']] = t_str
     with open(_dir + _name + '/' + pyme_cfg.info_file, 'w') as f:
       json.dump(dat, f)
+
+movies = sorted(movies.items(), key=itemgetter(1))
+with open(pyme_cfg.list_file, "w") as f:
+  for movie in movies:
+    f.write((movie[1] + "\n").encode('utf-8'))
 
 with open(pyme_cfg.err_file, "w") as f:
   f.writelines(sorted(err_lines))
