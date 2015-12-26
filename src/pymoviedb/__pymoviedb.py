@@ -25,6 +25,7 @@ import sys
 
 import omdb
 
+from datetime import datetime
 from operator import itemgetter, attrgetter
 
 import __cfg
@@ -79,6 +80,8 @@ def __pymoviedb_do():
 
   movies = {}
   err_lines = set()
+
+  err_lines.add( "# errors logged at program exec at %s\n" % datetime.utcnow() )
 
   if os.path.isfile(_cfg_list_file()):
     with open(_cfg_list_file()) as data_file:
@@ -152,7 +155,7 @@ def __pymoviedb_do():
 
     if jsondb == None or skip or 'Error' in jsondb.keys():
       print ( "...skip" )
-      err_lines.add("skipping " + _name + "\n")
+      err_lines.add( "skipping %s%s\n" % (_dir, _name) )
 
       # continue with next movie
       continue
