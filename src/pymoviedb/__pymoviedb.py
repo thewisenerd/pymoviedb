@@ -21,7 +21,6 @@
 import json
 import os
 import re
-import pprint
 import sys
 
 import omdb
@@ -174,7 +173,7 @@ def __pymoviedb_do():
 
   # write moviews
   with open(_cfg_list_file(), "w") as f:
-    f.write(pprint.pformat(movies, indent=2))
+    json.dump(movies, f)
 
   # write err
   with open(_cfg_err_file(), "w") as f:
