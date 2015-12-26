@@ -173,7 +173,7 @@ def __pymoviedb_do():
     movies[dat['imdbID']] = dat
 
     with open(_cfg_info_file(movie), 'w') as f:
-      json.dump(dat, f)
+      json.dump(dat, f, indent=2)
   # for movie in l: end
 
   # sort back movies
@@ -184,7 +184,7 @@ def __pymoviedb_do():
 
   # write moviews
   with open(_cfg_list_file(), "w") as f:
-    json.dump(n, f)
+    json.dump(n, f, indent=2)
 
   # write err
   with open(_cfg_err_file(), "w") as f:

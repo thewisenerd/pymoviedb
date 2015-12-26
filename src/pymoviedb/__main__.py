@@ -40,7 +40,7 @@ def sigint_handler(signum, frame):
 
   # write moviews
   with open(_cfg_list_file(), "w") as f:
-    json.dump(n, f)
+    json.dump(n, f, indent=2)
 
   # write err
   with open(_cfg_err_file(), "w") as f:
