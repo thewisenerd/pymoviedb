@@ -9,12 +9,15 @@ import shutil
 
 config = {
   "name"    : "pymoviedb",
-  "source"  : ["src/pymoviedb"],
+  "source"  : [
+                ["src/pymoviedb", ""],
+                ["src/omdb-0.5.0/omdb", "omdb/"],
+              ],
   "res"     : [
                 ["binaries/dir.list.example"],
-                ["src/omdb", "omdb"]
+                ["src/appdirs.py", "appdirs.py"],
               ],
-  "version" : "0.0.1",
+  "version" : "0.1.1",
   "desc"    : "pyMovieDB",
   "author"  : "thewisenerd",
   "email"   : "thewisenerd@protonmail.com",
@@ -49,10 +52,13 @@ zf = zipfile.ZipFile(getexecname(), mode='w')
 
 # add src
 for directory in config['source']:
-  for f in os.listdir(directory):
-    print ("+ src: %s: " % f, end='')
+  fs = directory[0] #source
+  fd = directory[1] #dest
+
+  for f in os.listdir(fs):
+    print ("+ src: %s: " % (fd + f), end='')
     try:
-      zf.write(directory + os.sep + f, f)
+      zf.write(fs + os.sep + f, fd + f)
     except Exception as arg:
       print ('fail')
       zf.close()

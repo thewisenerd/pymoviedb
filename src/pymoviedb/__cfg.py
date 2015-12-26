@@ -17,13 +17,13 @@
 #
 
 from __meta__ import (
-    __title__,
-    __summary__,
-    __url__,
-    __version__,
-    __author__,
-    __email__,
-    __license__,
+    __title__ as __title,
+    __summary__ as __summary,
+    __url__ as __url,
+    __version__ as __ver,
+    __author__ as __author,
+    __email__ as __email,
+    __license__ as __license,
 )
 
 dirs_file = 'dir.list'
@@ -36,8 +36,10 @@ info_file = 'info.json'
 
 _ignored = ['lost+found']
 
+folder_regex = "^[a-z0-9.,\-_&?'!:;]+$"
+
 _exts = [".ogg", ".avi", ".flv", ".mkv", ".mp4", ".m4v", ".wmv"]
 
 force_regen = False
 
-quiet       = False
+quiet       = True

@@ -5,11 +5,11 @@ __title__ = 'pymoviedb'
 __summary__ = 'keep track of movies'
 __url__ = 'NA'
 
-__version__ = '0.1.0'
+__version__ = '0.1.1'
 
 __install_requires__ = [
-    'omdb>=0.5.0',
-    'requests>=2.0.1',
+  'omdb>=0.5.0',
+  'requests>=2.0.1',
 ]
 
 __author__ = 'thewisenerd'
