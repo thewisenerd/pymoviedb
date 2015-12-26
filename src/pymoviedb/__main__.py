@@ -50,6 +50,8 @@ def sigint_handler(signum, frame):
   exit()
 
 signal.signal(signal.SIGINT, sigint_handler)
+signal.signal(signal.SIGTSTP, sigint_handler)
+signal.signal(signal.SIGTERM, sigint_handler)
 
 if (__name__ == "__main__"):
   global args
