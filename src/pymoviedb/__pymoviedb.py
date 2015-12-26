@@ -82,7 +82,9 @@ def __pymoviedb_do():
 
   if os.path.isfile(_cfg_list_file()):
     with open(_cfg_list_file()) as data_file:
-      movies = json.load(data_file)
+      n = json.load(data_file)
+      for v in n:
+        movies[v['imdbID']] = v
 
   l = _get_folders()
 
@@ -171,9 +173,15 @@ def __pymoviedb_do():
       json.dump(dat, f)
   # for movie in l: end
 
+  # sort back movies
+  n = sorted(movies.values(), key=itemgetter('base'))
+  movies = {}
+  for v in n:
+    movies[v['imdbID']] = v
+
   # write moviews
   with open(_cfg_list_file(), "w") as f:
-    json.dump(movies, f)
+    json.dump(n, f)
 
   # write err
   with open(_cfg_err_file(), "w") as f:
