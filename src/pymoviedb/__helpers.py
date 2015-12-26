@@ -121,13 +121,16 @@ def print_v (s):
   if __cfg.quiet == False:
     print (s, end='')
 
+def preexec(): # Don't forward signals.
+  os.setpgrp()
 def getFileRes(_file):
   heights = [0, 240, 360, 480, 720, 1080, 2160]
   _file = _file.replace('"', r'\"')
   #if not __cfg.quiet:
   #  print ("\tfile: " + _file)
   #  print ("\t res:",end='')
-  proc = subprocess.Popen('exiftool -j -ImageWidth -ImageHeight "' + _file + '"', stdout=subprocess.PIPE, shell=True)
+
+  proc = subprocess.Popen('exiftool -j -ImageWidth -ImageHeight "' + _file + '"', stdout=subprocess.PIPE, shell=True, preexec_fn = preexec)
   py2output = proc.stdout.read()
   jdec = json.loads(py2output.decode("utf-8"))
   if 'ImageWidth' and 'ImageHeight' in jdec[0].keys():
