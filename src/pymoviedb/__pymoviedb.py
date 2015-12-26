@@ -77,7 +77,7 @@ def __pymoviedb_do():
   global movies
   global err_lines
 
-  movies = []
+  movies = {}
   err_lines = set()
 
   if os.path.isfile(_cfg_list_file()):
@@ -165,7 +165,7 @@ def __pymoviedb_do():
     dat['imdbRating'] = jsondb['imdbRating']
     dat['Language']   = jsondb['Language']
 
-    movies.append(dat)
+    movies[dat['imdbID']] = dat
 
     with open(_cfg_info_file(movie), 'w') as f:
       json.dump(dat, f)
